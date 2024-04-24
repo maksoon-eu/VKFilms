@@ -25,7 +25,7 @@ const filmSlice = createSlice({
                 state.filmLoadingStatus = 'loading';
             })
             .addCase(fetchFilm.fulfilled, (state, action) => {
-                filmAdapter.setOne(state, action.payload);
+                filmAdapter.setAll(state, [action.payload]);
 
                 state.filmLoadingStatus = 'idle';
             })

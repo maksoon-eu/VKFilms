@@ -35,14 +35,10 @@ const filmsSlice = createSlice({
                 }
             })
             .addCase(fetchFilms.fulfilled, (state, action) => {
-                if (state.filmsLoadingStatus === 'loading') {
-                    filmsAdapter.setAll(state, action.payload);
-                } else {
-                    filmsAdapter.setMany(state, action.payload);
-                }
+                filmsAdapter.setMany(state, action.payload.results);
 
                 state.filmsLoadingStatus = 'idle';
-                state.totalCount = action.payload.length;
+                state.totalCount = action.payload.results.length;
             })
             .addCase(fetchFilms.rejected, state => {
                 state.filmsLoadingStatus = 'error';

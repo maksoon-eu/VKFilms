@@ -1,0 +1,192 @@
+@import '../../style/variables';
+
+.skeleton {
+    display: flex;
+    justify-content: space-between;
+
+    &__item {
+        border-radius: 15px;
+        max-width: 230px;
+        width: 100%;
+        height: 350px;
+        margin: 0 5px;
+        margin-bottom: 80px;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: calc(100% - 30px);
+
+        &--choose {
+            justify-content: flex-end;
+        }
+    }
+
+    &__title {
+        margin-top: 60px;
+        width: 350px;
+        height: 100px;
+        background-color: $gray-text;
+        border-radius: 10px;
+        margin-bottom: 30px;
+
+        &--choose {
+            margin-top: 50px;
+            height: 50px;
+            width: 200px;
+        }
+    }
+
+    &__subtitle {
+        width: 170px;
+        height: 33px;
+        margin-bottom: 40px;
+        margin-top: 10px;
+        background-color: $gray-text;
+        border-radius: 10px;
+    }
+
+    &__text {
+        width: 500px;
+        height: 100px;
+        background-color: $gray-text;
+        border-radius: 10px;
+        margin-bottom: 30px;
+
+        &--choose {
+            width: 600px;
+            height: 200px;
+        }
+    }
+
+    &__rating {
+        background-color: $gray-text;
+        width: 100px;
+        height: 50px;
+        border-radius: 10px;
+        margin-bottom: 280px;
+    }
+
+    &__img {
+        height: calc(100% - 30px);
+        width: 550px;
+        background-color: $gray-text;
+        border-radius: 10px;
+        &-actor {
+            width: 350px;
+            height: 520px;
+            background-color: $gray-text;
+            border-radius: 10px;
+            margin-right: 40px;
+        }
+    }
+
+    &__block {
+        width: 182px;
+        height: 256px;
+        border-radius: 15px;
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        border: 4px solid transparent;
+        background-color: $gray-text;
+    }
+
+    &__block2 {
+        width: 182px;
+        height: 256px;
+        border-radius: 15px;
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        border: 4px solid transparent;
+        background-color: $gray-text;
+    }
+
+    &__choseFilm {
+        height: 525px;;
+        width: 350px;
+        background-color: $gray-text;
+        border-radius: 10px;
+        margin-right: 60px;
+        margin-bottom: 0;
+    }
+
+    &__table {
+        display: flex;
+        justify-content: space-between;
+
+        &-left, &-right {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        &-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 143.5px;
+        }
+
+        &-item {
+            background-color: $gray-text;
+            height: 20px;
+            width: 200px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+    }
+
+    &--main {
+        padding: 0 15px;
+        height: calc(100vh - 110px);
+        max-height: 900px;
+        margin-top: 100px;
+    }
+
+    &--choose {
+        padding: 0;
+        align-items: flex-end;
+        margin-top: 0;
+    }
+
+    &--wave {
+        position: relative;
+        overflow: hidden;
+        background-color: rgb(231 231 231);
+
+        &:after {
+            animation: 2s linear 0.5s infinite normal none running animation-wave;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.09), transparent);
+            content: "";
+            position: absolute;
+            transform: translateX(-100%);
+            inset: 0px;
+        }
+    }
+
+    @keyframes animation-wave {
+        0% {
+            -webkit-transform: translateX(-100%);
+            -moz-transform: translateX(-100%);
+            -ms-transform: translateX(-100%);
+            transform: translateX(-100%);
+        }
+
+        50% {
+            -webkit-transform: translateX(100%);
+            -moz-transform: translateX(100%);
+            -ms-transform: translateX(100%);
+            transform: translateX(100%);
+        }
+
+        100% {
+            -webkit-transform: translateX(100%);
+            -moz-transform: translateX(100%);
+            -ms-transform: translateX(100%);
+            transform: translateX(100%);
+        }
+    }
+}

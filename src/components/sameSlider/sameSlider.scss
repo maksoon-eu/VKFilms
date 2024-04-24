@@ -1,0 +1,17 @@
+.sameSlider {
+    &__minHeight {
+        min-height: 510px;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    &__title {
+        font-size: 32px;
+        font-weight: 600;
+    }
+}

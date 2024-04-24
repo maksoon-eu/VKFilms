@@ -8,7 +8,7 @@ body {
 
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 18px;
-    color: #000;
+    color: #fff;
     width: 100%;
 
     -webkit-font-smoothing: antialiased;
@@ -73,5 +73,105 @@ input {
 
     &:placeholder {
         font-family: inherit;
+    }
+}
+
+.greenText {
+    color: rgb(0, 176, 12);
+}
+
+.yellowText {
+    color: #d69d16;
+}
+
+.redText {
+    color: red;
+}
+
+.greenBackground {
+    background-color: rgb(0, 176, 12);
+}
+
+.yellowBackground {
+    background-color: #d69d16;
+}
+
+.redBackground {
+    background-color: red;
+}
+
+.app {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.load__more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $hover-color;
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-weight: 900;
+}
+
+.loader {
+    position: relative;
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+
+    &:after , &:before  {
+        content: '';
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background-color: #FFF;
+        background-image:  radial-gradient(circle 10px, #0d161b 100%, transparent 0);
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        animation: eyeMove 10s infinite , blink 10s infinite;
+    }
+}
+
+@keyframes eyeMove {
+    0%  , 10% {     background-position: 0px 0px}
+    13%  , 40% {     background-position: -15px 0px}
+    43%  , 70% {     background-position: 15px 0px}
+    73%  , 90% {     background-position: 0px 15px}
+    93%  , 100% {     background-position: 0px 0px}
+}
+
+@keyframes blink {
+    0%  , 10% , 12% , 20%, 22%, 40%, 42% , 60%, 62%,  70%, 72% , 90%, 92%, 98% , 100%
+    { height: 25px}
+    11% , 21% ,41% , 61% , 71% , 91% , 99%
+    { height: 10px}
+}
+
+.slick-next {
+    width: 20px;
+    height: 35px;
+    right: 0px;
+    &:before {
+        transition: .1s linear;
+        content: url('../resources/img/right-arrow.svg') !important;
+    }
+}
+
+.slick-prev {
+    width: 20px;
+    height: 35px;
+    left: 0px;
+    &:before {
+        transition: .1s linear;
+        content: url('../resources/img/left-arrow.svg') !important;
     }
 }

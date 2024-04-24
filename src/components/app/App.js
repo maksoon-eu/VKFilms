@@ -1,11 +1,11 @@
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes } from "react-router-dom";
 
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
-import CatalogPage from "../page/CatalogPage";
-import ItemPage from "../page/ItemPage";
-import NotFoundPage from "../page/NotFoundPage";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import CatalogPage from "../../page/CatalogPage";
+import ItemPage from "../../page/ItemPage";
+import NotFoundPage from "../../page/NotFoundPage";
 
 import '../../style/style.scss';
 
@@ -16,8 +16,8 @@ const App = () => {
         <Header/>
         <AnimatePresence mode="wait">
             <Routes>
-                <Route path="/catalog" element={<CatalogPage/>}/>
-                <Route path="/catalog/:id" element={<ItemPage/>}/>
+                <Route path="/films" element={<CatalogPage/>}/>
+                <Route path="/films/:id" element={<ItemPage/>}/>
                 <Route path="*" element={<NotFoundPage/>}/>
             </Routes>
         </AnimatePresence>

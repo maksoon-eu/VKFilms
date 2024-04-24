@@ -1,0 +1,30 @@
+.header {
+    height: 120px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
+
+    &:before {
+        position: absolute;
+        content: '';
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: -50px;
+        background: linear-gradient(180deg,#000 11.31%,rgba(0,0,0,.99)14.71%,rgba(0,0,0,.96)20.11%,rgba(0,0,0,.91)27.51%,rgba(0,0,0,.85)31.91%,rgba(0,0,0,.76)36.31%,rgba(0,0,0,.67)40.71%,rgba(0,0,0,.55)45.11%,rgba(0,0,0,.44)49.52%,rgba(0,0,0,.33)53.92%,rgba(0,0,0,.23)58.32%,rgba(0,0,0,.15)62.72%,rgba(0,0,0,8%)67.12%,rgba(0,0,0,3%)71.52%,rgba(0,0,0,1%)75.92%,rgba(0,0,0,0)80.32%);
+        z-index: -1;
+    }
+
+    &__inner {
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 400px;
+            height: 120px;
+        }
+    }
+}

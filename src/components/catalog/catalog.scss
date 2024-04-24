@@ -1,0 +1,9 @@
+.catalog {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &__minHeight {
+        min-height: 1780px;
+    }
+}
