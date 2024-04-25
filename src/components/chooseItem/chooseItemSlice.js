@@ -4,7 +4,8 @@ import {useHttp} from '../../hooks/http.hook';
 const filmAdapter = createEntityAdapter();
 
 const initialState = filmAdapter.getInitialState({
-    filmLoadingStatus: 'idle'
+    filmLoadingStatus: 'idle',
+    totalCount: 0
 });
 
 export const fetchFilm = createAsyncThunk(
@@ -28,6 +29,7 @@ const filmSlice = createSlice({
                 filmAdapter.setAll(state, [action.payload]);
 
                 state.filmLoadingStatus = 'idle';
+                state.totalCount = 1;
             })
             .addCase(fetchFilm.rejected, state => {
                 state.filmLoadingStatus = 'error';

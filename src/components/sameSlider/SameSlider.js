@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchSameFilms, selectAll } from "./sameSliderSlice";
 import Slider from "react-slick";
 import { AnimatePresence, motion } from "framer-motion";
 
 import store from "../../store/store";
 
-import SkeletonItem from "../skeleton/SkeletonItem";
 import CatalogItem from "../catalogItem/CatalogItem";
 
 import './sameSlider.scss';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../skeleton/skeleton.scss";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const SameSlider = () => {
@@ -21,11 +21,12 @@ const SameSlider = () => {
 
     const dispatch = useDispatch();
 
-    const {id} = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
-        if (!totalCount) {
+        if (localStorage.getItem('currentSameId') !== id || !totalCount) {
             dispatch(fetchSameFilms(id));
+            localStorage.setItem('currentSameId', id);
         }
     }, [id]);
 
@@ -43,7 +44,9 @@ const SameSlider = () => {
 
     const skeletonList = skeletonArr.map((item, i) => {
         return (
-            <SkeletonItem key={i}/>
+            <div key={i}>
+                <div className="skeleton__item skeleton--wave skeleton__item--choose"/>
+            </div>
         )
     });
 
@@ -55,44 +58,47 @@ const SameSlider = () => {
         initialSlide: 0,
         responsive: [
             {
-              breakpoint: 1230,
+              breakpoint: 1190,
               settings: {
                 slidesToShow: 4
               }
             },
             {
-              breakpoint: 870,
+              breakpoint: 974,
               settings: {
                 slidesToShow: 3
               }
             },
             {
-              breakpoint: 550,
+              breakpoint: 438,
               settings: {
-                slidesToShow: 3
+                slidesToShow: 2
               }
             }
         ]
     };
 
-    const spinnerSlider = sameFilmsLoadingStatus === 'loading' ? skeletonList : null;
+    const content = sameFilmsLoadingStatus === 'loading' ? skeletonList : similarMovieList;
+    const title = sameFilmsLoadingStatus === 'loading' ? <div className="skeleton__title skeleton__title--choose skeleton__title--slider"/> : <div className="sameSlider__title">Похожее</div>;
     return (
-        <div className="sameSlider__minHeight">
-            <AnimatePresence mode="wait">
-                <motion.div
-                    initial={{ opacity: 0}}
-                    animate={{ opacity: 1}}
-                    exit={{opacity: 0}}
-                    key={sameFilmsLoadingStatus}
-                >
-                    {sameFilmsLoadingStatus === 'loading' ? <div className="skeleton__title skeleton__title--choose skeleton__title--slider"/> : <div className="sameSlider__title">Похожее</div>}
-                    <Slider {...settings} className="sameSlider__slider">
-                        {spinnerSlider}  
-                        {similarMovieList}  
-                    </Slider>
-                    </motion.div>
-            </AnimatePresence>
-            </div>
+        <>
+            {(totalCount || sameFilmsLoadingStatus === 'loading') && sameFilmsLoadingStatus !== 'error' &&
+            <div className="sameSlider__minHeight">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        initial={{ opacity: 0}}
+                        animate={{ opacity: 1}}
+                        exit={{opacity: 0}}
+                        key={sameFilmsLoadingStatus}
+                    >
+                        {title}
+                        <Slider {...settings} className="sameSlider__slider">
+                            {content}
+                        </Slider>
+                        </motion.div>
+                </AnimatePresence>
+            </div>}
+        </>
     )
 }
 

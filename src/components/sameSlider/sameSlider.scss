@@ -1,6 +1,6 @@
 .sameSlider {
     &__minHeight {
-        min-height: 510px;
+        min-height: 540px;
     }
 
     &__item {
@@ -13,5 +13,34 @@
     &__title {
         font-size: 32px;
         font-weight: 600;
+    }
+}
+
+@media (max-width: 768px) {
+    .sameSlider {
+        &__minHeight {
+            min-height: 420px;
+        }
+
+        &__item {
+            margin-top: 30px;
+        }
+    
+        &__title {
+            font-size: 32px;
+        }
+    }
+}
+
+@media (max-width: 540px) {
+    .sameSlider {
+        &__minHeight {
+            min-height: 380px;
+        }
+    
+        &__title {
+            font-size: 25px;
+            font-weight: 600;
+        }
     }
 }

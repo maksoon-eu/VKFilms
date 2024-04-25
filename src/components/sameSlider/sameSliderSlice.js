@@ -28,7 +28,7 @@ const sameFilmsSlice = createSlice({
             .addCase(fetchSameFilms.fulfilled, (state, action) => {
                 sameFilmsAdapter.setAll(state, action.payload.results);
 
-                state.totalCount = action.payload.length
+                state.totalCount = action.payload.results.length
                 state.sameFilmsLoadingStatus = 'idle';
             })
             .addCase(fetchSameFilms.rejected, state => {

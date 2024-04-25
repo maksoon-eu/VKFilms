@@ -6,7 +6,6 @@ import { fetchFilms, selectAll } from "./catalogSlice";
 import store from "../../store/store";
 
 import CatalogItem from "../catalogItem/CatalogItem";
-import SkeletonItem from "../skeleton/SkeletonItem";
 
 import './catalog.scss';
 
@@ -30,10 +29,12 @@ const Catalog = () => {
 
     const skeletonList = skeletonArr.map((item, i) => {
         return (
-            <SkeletonItem key={i}/>
+            <div className="skeleton__item skeleton--wave" key={i}/>
         )
     })
 
+    const content = filmsLoadingStatus === 'loading' ? skeletonList : filmsLoadingStatus === 'error' ? <h1 className="nothing">Turn on VPN</h1> : totalCount === 0 ? <h1 className="nothing">Nothing found</h1> : filmList;
+    const loadMore = filmsLoadingStatus === 'loading' || filmsLoadingStatus === 'updateLoading' ? <span className="loader"></span> : 'Загрузить Еще';
     return (
         <div className="catalog__minHeight">
             <AnimatePresence mode="wait">
@@ -44,17 +45,17 @@ const Catalog = () => {
                     key={filmsLoadingStatus === 'loading'}
                     className="catalog"
                 >
-                    {filmsLoadingStatus === 'loading' ? skeletonList : totalCount === 0 ? <h1 className="nothing">Nothing found</h1> : filmList}
+                    {content}
                 </motion.div>
             </AnimatePresence>
 
-            {totalCount % 20 === 0 && totalCount !== 0 &&
+            {totalCount % 20 === 0 && totalCount !== 0 && filmsLoadingStatus !== 'error' &&
                 <motion.div 
                     className="load__more"
                     whileHover={{ scale: 1.05, translateY: -3 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => dispatch(fetchFilms())}
-                >{filmsLoadingStatus === 'loading' || filmsLoadingStatus === 'updateLoading'  ? <span className="loader"></span> : 'Загрузить Еще'}</motion.div>
+                >{loadMore}</motion.div>
             }
         </div>
     )

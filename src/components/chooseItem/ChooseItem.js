@@ -15,16 +15,17 @@ import loadingImg from '../../resources/img/loading.svg';
 import './chooseItem.scss';
 
 const ChooseItem = () => {
-    const {id} = useParams();
+    const { id } = useParams();
 
-    const { filmLoadingStatus } = useSelector(state => state.film);
+    const { filmLoadingStatus, totalCount } = useSelector(state => state.film);
     const film = selectAll(store.getState());
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (film[0]?.id !== id) {
+        if (localStorage.getItem('currentChooseId') !== id || !totalCount) {
             dispatch(fetchFilm(id));
+            localStorage.setItem('currentChooseId', id);
         }
     }, [id])
 
@@ -55,12 +56,7 @@ const ChooseItem = () => {
                         </div>
                     </div>
                     <div className="film__right">
-
-                        <div className="film__logo" style={{display: item.logo ? 'block' : 'none'}}>
-                            <LazyLoadImage placeholderSrc={loadingImg} width='100%' height='100%' effect="blur" src={item.logo} alt={item.name}/>
-                        </div>
-
-                        <div className="film__name" style={{display: !item.logo ? 'block' : 'none'}}>{item.title}</div>
+                        <div className="film__name">{item.title}</div>
                         <div className="film__names">
                             <div className="film__alternativeName">{item.original_title}</div>
                         </div>
@@ -108,6 +104,7 @@ const ChooseItem = () => {
         )
     })
 
+    const content = filmLoadingStatus === 'loading' ? <SkeletonChoose/> : filmLoadingStatus === 'error' ? <h1 className="nothing">Turn on VPN</h1> : filmContent;
     return (
         <div className="film__minHeight">
             <AnimatePresence mode="wait">
@@ -117,7 +114,7 @@ const ChooseItem = () => {
                     exit={{opacity: 0}}
                     key={filmLoadingStatus}
                 >
-                    {filmLoadingStatus === 'loading' ? <SkeletonChoose/> : filmContent}
+                    {content}
                 </motion.div>
             </AnimatePresence>
         </div>

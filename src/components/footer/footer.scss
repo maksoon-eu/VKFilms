@@ -30,3 +30,25 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .footer {
+        margin-top: 20px;
+    
+        &__inner {
+            &-logo {
+                img {
+                    width: 115px;
+                    height: 40px;
+                }
+            }
+        }
+    
+        &__info {
+            &-title, &-text {
+                font-size: 14px;
+                padding: 0 5px;
+            }
+        }
+    }
+}
